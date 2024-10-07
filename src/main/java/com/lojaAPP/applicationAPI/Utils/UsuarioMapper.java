@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class UsuarioMapper {
+
     public DetalhesUsuarioDTO toDetalhesUsuarioDTO(Usuario usuario){
         List<DetalhesEnderecoDTO> enderecosUsuario =  usuario.getEnderecosCliente().stream().map(this::toDetalhesEnderecoDTO).toList();
 
