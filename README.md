@@ -9,28 +9,28 @@ Aplicação (em construção) de um e-commerce simples de eletrônicos, back-end
 
 - [X] Implementação da entidade de Usuário e Serviços/Endpoints
 
-- [] Implementação da entidade de Produtos e Serviços/Endpoints
+- [ ] Implementação da entidade de Produtos e Serviços/Endpoints
 
-- [] Implementação da entidade de Pedidos e Serviços/Endpoints
+- [ ] Implementação da entidade de Pedidos e Serviços/Endpoints
 
-- [] Implementação de Autenticação por Tokens OAuth2
+- [ ] Implementação de Autenticação por Tokens OAuth2
 
-- [] Documentação dos Endpoints com Swagger API
+- [ ] Documentação dos Endpoints com Swagger API
 
 ### Microsserviço de Imagens:
 
-- [] Serviço para processamento de imagens dos produtos
+- [ ] Serviço para processamento de imagens dos produtos
 
 ### Aplicação Front:
 
-- [] Construção das telas - Cliente
+- [ ] Construção das telas - Cliente
 
-- [] Construção das telas - Administrador
+- [ ] Construção das telas - Administrador
 
-- [] Conexão com a API
+- [ ] Conexão com a API
 
 ###Deploy da aplicação:
 
-- [] Configurações necessárias do Docker
+- [ ] Configurações necessárias do Docker
 
-- [] Criação do DockerFile
+- [ ] Criação do DockerFile
