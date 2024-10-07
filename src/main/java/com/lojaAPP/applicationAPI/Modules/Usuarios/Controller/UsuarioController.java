@@ -20,7 +20,6 @@ public class UsuarioController implements UsuarioControllerDoc {
         return ResponseEntity.status(201).body("Usuário foi criado com sucesso.");
     }
 
-    //TODO - Alterar para um DTO próprio sem revelar informações sensíveis
     @GetMapping(value = "/buscar/{id}")
     public ResponseEntity<?> buscarUsuario(@PathVariable long id){
         var response = usuarioServices.buscarUsuario(id);
