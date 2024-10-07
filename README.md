@@ -29,8 +29,12 @@ Aplicação (em construção) de um e-commerce simples de eletrônicos, back-end
 
 - [ ] Conexão com a API
 
-###Deploy da aplicação:
+### Deploy da aplicação:
 
 - [ ] Configurações necessárias do Docker
 
 - [ ] Criação do DockerFile
+
+
+## Rodando a aplicação:
+
