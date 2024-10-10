@@ -35,6 +35,9 @@ public class Usuario {
     @Column(unique = true)
     private String cpf;
 
+    @Column(unique = true)
+    private String telefone;
+
     @Column
     @Enumerated(value = EnumType.STRING)
     private Roles role;
@@ -47,6 +50,7 @@ public class Usuario {
         this.nome = novoUsuarioDTO.nome();
         this.cpf = novoUsuarioDTO.cpf();
         this.senha = novoUsuarioDTO.senha();
+        this.telefone = novoUsuarioDTO.telefone();
         this.role = role;
     }
 
