@@ -51,12 +51,16 @@ public class ProdutosService {
 
         String imagemURL = processaImagem.salvarImagem(editarProdutoDTO.imagem());
 
-        Produtos produtoEditado = produtosMapper.toProdutoEditado(produtoQuery, editarProdutoDTO, imagemURL);
+        Produtos produtoEditado = produtosMapper.toProdutoEditado(produtoQuery ,editarProdutoDTO, imagemURL);
         produtoRepository.save(produtoEditado);
     }
 
     public List<DetalhesProdutoDTO> buscarProduto(String nome){
         return produtosMapper.toDetalhesProdutoDTO(produtoRepository.findByNameLike(nome));
+    }
+
+    public List<DetalhesProdutoDTO> buscarProdutoCategoria(long categoriaId){
+        return produtosMapper.toDetalhesProdutoDTO(produtoRepository.findProdutoByCategoria(categoriaId));
     }
 
     public List<DetalhesProdutoDTO> buscarTodosProdutos(){
@@ -91,7 +95,6 @@ public class ProdutosService {
         else {
             categoriaRepository.deleteById(categoriaId);
         }
-
     }
 
 }
