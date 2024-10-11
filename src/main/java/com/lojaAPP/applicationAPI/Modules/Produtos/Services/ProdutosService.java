@@ -1,9 +1,6 @@
 package com.lojaAPP.applicationAPI.Modules.Produtos.Services;
 
-import com.lojaAPP.applicationAPI.Modules.Produtos.DTO.DetalhesCategoriaDTO;
-import com.lojaAPP.applicationAPI.Modules.Produtos.DTO.DetalhesProdutoDTO;
-import com.lojaAPP.applicationAPI.Modules.Produtos.DTO.NovaCategoriaDTO;
-import com.lojaAPP.applicationAPI.Modules.Produtos.DTO.NovoProdutoDTO;
+import com.lojaAPP.applicationAPI.Modules.Produtos.DTO.*;
 import com.lojaAPP.applicationAPI.Modules.Produtos.Domain.Entity.Categoria;
 import com.lojaAPP.applicationAPI.Modules.Produtos.Domain.Produtos;
 import com.lojaAPP.applicationAPI.Modules.Produtos.Repository.CategoriaRepository;
@@ -13,6 +10,7 @@ import com.lojaAPP.applicationAPI.Utils.ProcessaImagem;
 import com.lojaAPP.applicationAPI.Utils.ProdutosMapper;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,8 +46,13 @@ public class ProdutosService {
     }
 
     @Transactional
-    public void editarProduto(long produtoId){
+    public void editarProduto(EditarProdutoDTO editarProdutoDTO){
+        Produtos produtoQuery = produtoRepository.findById(editarProdutoDTO.id()).orElseThrow(EntityNotFoundException::new);
 
+        String imagemURL = processaImagem.salvarImagem(editarProdutoDTO.imagem());
+
+        Produtos produtoEditado = produtosMapper.toProdutoEditado(produtoQuery, editarProdutoDTO, imagemURL);
+        produtoRepository.save(produtoEditado);
     }
 
     public List<DetalhesProdutoDTO> buscarProduto(String nome){
@@ -77,8 +80,18 @@ public class ProdutosService {
         return categoriasMapper.todetalhesCategoriaDTO(categoriaRepository.findAll());
     }
 
+    @Transactional
     public void excluirCategoria(long categoriaId) {
-        categoriaRepository.deleteById(categoriaId);
+        long contagemProdutos = produtoRepository.countProdutosCategoria(categoriaId);
+
+        if (contagemProdutos > 0) {
+            //Melhor tratar no exception handler
+            throw new DataIntegrityViolationException("");
+        }
+        else {
+            categoriaRepository.deleteById(categoriaId);
+        }
+
     }
 
 }

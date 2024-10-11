@@ -19,7 +19,7 @@ public class Produtos {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long produtoId;
 
-    @Column
+    @Column(unique = true)
     private String nome;
 
     @Column
@@ -34,7 +34,8 @@ public class Produtos {
     @Column
     private String foto_url;
 
-    @OneToOne(mappedBy = "produto")
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
     private Categoria categoriaProduto;
 
     public Produtos(NovoProdutoDTO novoProdutoDTO, String imageURL, Categoria categoriaProduto) {

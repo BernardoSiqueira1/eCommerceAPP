@@ -34,4 +34,16 @@ public class UsuarioController implements UsuarioControllerDoc {
 
         return ResponseEntity.status(200).body("Usuário foi excluído.");
     }
+
+    @PostMapping(value = "/cadastrarEndereco/{id}")
+    public ResponseEntity<?> cadastrarEndereco(@PathVariable long id, @RequestBody @Valid NovoEnderecoDTO novoEnderecoDTO){
+        usuarioServices.cadastrarNovoEndereco(novoEnderecoDTO, id);
+        return ResponseEntity.status(201).body("Novo endereço cadastrado com sucesso.");
+    }
+
+    @DeleteMapping(value = "/deleteEndereco/{ìd}")
+    public ResponseEntity<?> deletarEndereco(@PathVariable long id){
+        usuarioServices.excluirUsuario(id);
+        return ResponseEntity.status(200).body("Endereço foi excluído.");
+    }
 }

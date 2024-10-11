@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "/produtos")
 public class ProdutosController implements ProdutosControllerDoc {
+
     @Autowired
     ProdutosService produtosService;
 
     @PostMapping(value = "/cadastrar")
-    public ResponseEntity<?> cadastrarProduto(@ModelAttribute @Valid  NovoProdutoDTO novoProdutoDTO){
+    public ResponseEntity<?> cadastrarProduto(@ModelAttribute @Valid NovoProdutoDTO novoProdutoDTO){
         produtosService.cadastrarProduto(novoProdutoDTO);
         return ResponseEntity.status(201).body("Produto cadastrado com sucesso.");
     }

@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -17,11 +19,11 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long categoriaId;
 
-    @Column
+    @Column(unique = true)
     private String nomeCategoria;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private Produtos produto;
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Produtos> produto;
 
     public Categoria(NovaCategoriaDTO novaCategoriaDTO){
         this.nomeCategoria = novaCategoriaDTO.nomeCategoria();

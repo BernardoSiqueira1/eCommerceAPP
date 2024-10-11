@@ -1,11 +1,11 @@
 package com.lojaAPP.applicationAPI.Modules.Produtos.DTO;
 
-import com.lojaAPP.applicationAPI.Modules.Produtos.Domain.Entity.Categoria;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.web.multipart.MultipartFile;
 
-public record NovoProdutoDTO(
+public record EditarProdutoDTO(
+        @NotNull
+        Long id,
         @NotNull
         String nome,
         @NotNull
@@ -15,8 +15,5 @@ public record NovoProdutoDTO(
         @NotNull
         String descricao,
         @NotNull
-        MultipartFile imagem,
-        @NotNull
-        long categoriaId
-)
-{}
+        MultipartFile imagem
+){}
