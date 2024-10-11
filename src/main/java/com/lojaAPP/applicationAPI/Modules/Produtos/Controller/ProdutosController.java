@@ -3,6 +3,7 @@ package com.lojaAPP.applicationAPI.Modules.Produtos.Controller;
 import com.lojaAPP.applicationAPI.Modules.Produtos.DTO.NovaCategoriaDTO;
 import com.lojaAPP.applicationAPI.Modules.Produtos.DTO.NovoProdutoDTO;
 import com.lojaAPP.applicationAPI.Modules.Produtos.Services.ProdutosService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,13 +15,13 @@ public class ProdutosController implements ProdutosControllerDoc {
     ProdutosService produtosService;
 
     @PostMapping(value = "/cadastrar")
-    public ResponseEntity<?> cadastrarProduto(@ModelAttribute NovoProdutoDTO novoProdutoDTO){
+    public ResponseEntity<?> cadastrarProduto(@ModelAttribute @Valid  NovoProdutoDTO novoProdutoDTO){
         produtosService.cadastrarProduto(novoProdutoDTO);
         return ResponseEntity.status(201).body("Produto cadastrado com sucesso.");
     }
 
     @PostMapping(value = "/cadastrarCategoria")
-    public ResponseEntity<?> cadastrarCategoria(@RequestBody NovaCategoriaDTO novaCategoriaDTO){
+    public ResponseEntity<?> cadastrarCategoria(@RequestBody @Valid NovaCategoriaDTO novaCategoriaDTO){
         produtosService.cadastrarCategoria(novaCategoriaDTO);
         return ResponseEntity.status(201).body("Categoria cadastrada com sucesso.");
     }
