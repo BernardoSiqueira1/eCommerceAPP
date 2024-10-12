@@ -12,6 +12,8 @@ public record NovoUsuarioDTO(
         String nome,
         @NotNull(message = "CPF não pode ser nulo")
         String cpf,
+        @NotNull(message = "Telefone não pode ser nulo")
+        String telefone,
         @NotNull(message = "Estado não pode ser nulo")
         String estado,
         @NotNull(message = "Cidade não pode ser nulo")
