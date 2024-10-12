@@ -9,7 +9,7 @@ Aplicação (em construção) de um e-commerce simples de eletrônicos, back-end
 
 - [X] Implementação da entidade de Usuário e Serviços/Endpoints
 
-- [ ] Implementação da entidade de Produtos e Serviços/Endpoints
+- [X] Implementação da entidade de Produtos e Serviços/Endpoints
 
 - [ ] Implementação da entidade de Pedidos e Serviços/Endpoints
 
@@ -19,7 +19,7 @@ Aplicação (em construção) de um e-commerce simples de eletrônicos, back-end
 
 ### Microsserviço de Imagens:
 
-- [ ] Serviço para processamento de imagens dos produtos
+- [X] Serviço para processamento de imagens dos produtos
 
 ### Aplicação Front:
 
