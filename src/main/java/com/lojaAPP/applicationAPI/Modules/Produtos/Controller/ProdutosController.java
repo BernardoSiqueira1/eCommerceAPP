@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/produtos")
-public class ProdutosController implements ProdutosControllerDoc {
+public class ProdutosController {
 
     @Autowired
     ProdutosService produtosService;
@@ -23,17 +23,17 @@ public class ProdutosController implements ProdutosControllerDoc {
     }
 
     //TODO - melhorar os métodos depois, talvez posso construir de forma dinâmica uma query com EntityManager.
-    @GetMapping(value = "buscar/categoria/{categoriaID")
+    @GetMapping(value = "/buscar/categoria/{categoriaID}")
     public ResponseEntity<?> buscarProdutos(@PathVariable long categoriaID) {
         var response = produtosService.buscarProdutoCategoria(categoriaID);
 
         return ResponseEntity.status(200).body(response);
     }
 
-    @GetMapping(value = "buscar/{nomeProduto}")
-    public ResponseEntity<?> buscarProdutos(@PathVariable(required = false) String nomeProduto){
+    @GetMapping(value = "/buscar")
+    public ResponseEntity<?> buscarProdutos(@RequestParam(required = false) String nomeProduto){
 
-        if(nomeProduto.isEmpty()){
+        if(nomeProduto == null || nomeProduto.isEmpty() ){
             var response = produtosService.buscarTodosProdutos();
             return ResponseEntity.status(200).body(response);
         }
@@ -46,7 +46,7 @@ public class ProdutosController implements ProdutosControllerDoc {
     }
 
     @PutMapping(value = "/editar")
-    public ResponseEntity<?> editarProduto(@RequestBody EditarProdutoDTO editarProdutoDTO){
+    public ResponseEntity<?> editarProduto(@ModelAttribute @Valid EditarProdutoDTO editarProdutoDTO){
         produtosService.editarProduto(editarProdutoDTO);
         return ResponseEntity.status(200).body("Produto foi alterado.");
     }
