@@ -19,7 +19,8 @@ public class ProdutosMapper {
                         produto.getPreco_a_vista(),
                         produto.getDescricao(),
                         produto.getFoto_url(),
-                        produto.getCategoriaProduto()
+                        produto.getCategoriaProduto().getCategoriaId(),
+                        produto.getCategoriaProduto().getNomeCategoria()
                 )).toList();
     }
 
