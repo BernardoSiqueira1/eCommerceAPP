@@ -15,8 +15,6 @@ Aplicação (em construção) de um e-commerce simples de eletrônicos, back-end
 
 - [ ] Implementação de Autenticação por Tokens OAuth2
 
-- [ ] Documentação dos Endpoints com Swagger API
-
 ### Microsserviço de Imagens:
 
 - [X] Serviço para processamento de imagens dos produtos
