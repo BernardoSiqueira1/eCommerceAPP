@@ -51,7 +51,7 @@ public class ProdutosService {
 
         String imagemURL = processaImagem.salvarImagem(editarProdutoDTO.imagem());
 
-        Produtos produtoEditado = produtosMapper.toProdutoEditado(produtoQuery ,editarProdutoDTO, imagemURL);
+        Produtos produtoEditado = produtosMapper.toProdutoEditado(produtoQuery, editarProdutoDTO, imagemURL);
         produtoRepository.save(produtoEditado);
     }
 
@@ -81,7 +81,7 @@ public class ProdutosService {
     }
 
     public List<DetalhesCategoriaDTO> buscarTodasCategorias(){
-        return categoriasMapper.todetalhesCategoriaDTO(categoriaRepository.findAll());
+        return categoriasMapper.todetalhesCategoriaDTO(categoriaRepository.findAllCategorias());
     }
 
     @Transactional
