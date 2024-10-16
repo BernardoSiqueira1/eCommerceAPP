@@ -24,25 +24,22 @@ public class ProdutosController {
 
     //TODO - melhorar os métodos depois, talvez posso construir de forma dinâmica uma query com EntityManager.
     @GetMapping(value = "/buscar/categoria/{categoriaID}")
-    public ResponseEntity<?> buscarProdutos(@PathVariable long categoriaID) {
-        var response = produtosService.buscarProdutoCategoria(categoriaID);
+    public ResponseEntity<?> buscarProdutos(@PathVariable long categoriaID, @RequestParam int pagina) {
+        var response = produtosService.buscarProdutoCategoria(categoriaID, pagina);
 
         return ResponseEntity.status(200).body(response);
     }
 
+    @GetMapping(value = "/buscar/todos")
+    public ResponseEntity<?> buscarTodosProdutos(@RequestParam int pagina){
+        var response = produtosService.buscarTodosProdutos(pagina);
+        return ResponseEntity.status(200).body(response);
+    }
+
     @GetMapping(value = "/buscar")
-    public ResponseEntity<?> buscarProdutos(@RequestParam(required = false) String nomeProduto){
-
-        if(nomeProduto == null || nomeProduto.isEmpty() ){
-            var response = produtosService.buscarTodosProdutos();
+    public ResponseEntity<?> buscarProdutos(@RequestParam String nomeProduto, @RequestParam int pagina){
+            var response = produtosService.buscarProduto(nomeProduto, pagina);
             return ResponseEntity.status(200).body(response);
-        }
-
-        else {
-            var response = produtosService.buscarProduto(nomeProduto);
-            return ResponseEntity.status(200).body(response);
-        }
-
     }
 
     @PutMapping(value = "/editar")

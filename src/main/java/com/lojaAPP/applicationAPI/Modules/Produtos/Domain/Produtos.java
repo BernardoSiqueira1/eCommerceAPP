@@ -1,5 +1,6 @@
 package com.lojaAPP.applicationAPI.Modules.Produtos.Domain;
 
+import com.lojaAPP.applicationAPI.Modules.Pedidos.Domain.Pedidos;
 import com.lojaAPP.applicationAPI.Modules.Produtos.DTO.NovoProdutoDTO;
 import com.lojaAPP.applicationAPI.Modules.Produtos.Domain.Entity.Categoria;
 import jakarta.persistence.*;
@@ -37,6 +38,14 @@ public class Produtos {
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoriaProduto;
+
+    @ManyToMany
+    @JoinTable(
+            name = "pedidos_produto",
+            joinColumns = @JoinColumn(name = "pedido_id"),
+            inverseJoinColumns = @JoinColumn(name = "produto_id")
+    )
+    private List<Pedidos> pedidos;
 
     public Produtos(NovoProdutoDTO novoProdutoDTO, String imageURL, Categoria categoriaProduto) {
         this.nome = novoProdutoDTO.nome();
