@@ -11,7 +11,7 @@ Aplicação (em construção) de um e-commerce simples de eletrônicos, back-end
 
 - [X] Implementação da entidade de Produtos e Serviços/Endpoints
 
-- [ ] Implementação da entidade de Pedidos e Serviços/Endpoints
+- [X] Implementação da entidade de Pedidos e Serviços/Endpoints
 
 - [ ] Implementação de Autenticação por Tokens OAuth2
 
