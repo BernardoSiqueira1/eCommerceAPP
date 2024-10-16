@@ -11,6 +11,7 @@ import com.lojaAPP.applicationAPI.Utils.ProdutosMapper;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,16 +56,21 @@ public class ProdutosService {
         produtoRepository.save(produtoEditado);
     }
 
-    public List<DetalhesProdutoDTO> buscarProduto(String nome){
-        return produtosMapper.toDetalhesProdutoDTO(produtoRepository.findByNameLike(nome));
+    public List<DetalhesProdutoDTO> buscarProduto(String nome, int pagina){
+        PageRequest pageRequest = PageRequest.of(pagina, 10);
+
+        return produtosMapper.toDetalhesProdutoDTO(produtoRepository.findByNameLike(nome, pageRequest));
     }
 
-    public List<DetalhesProdutoDTO> buscarProdutoCategoria(long categoriaId){
-        return produtosMapper.toDetalhesProdutoDTO(produtoRepository.findProdutoByCategoria(categoriaId));
+    public List<DetalhesProdutoDTO> buscarProdutoCategoria(long categoriaId, int pagina){
+        PageRequest pageRequest = PageRequest.of(pagina, 10);
+
+        return produtosMapper.toDetalhesProdutoDTO(produtoRepository.findProdutoByCategoria(categoriaId, pageRequest));
     }
 
-    public List<DetalhesProdutoDTO> buscarTodosProdutos(){
-        return produtosMapper.toDetalhesProdutoDTO(produtoRepository.findAll());
+    public List<DetalhesProdutoDTO> buscarTodosProdutos(int pagina){
+        PageRequest pageRequest = PageRequest.of(pagina, 10);
+        return produtosMapper.toDetalhesProdutoDTO(produtoRepository.findAll(pageRequest));
     }
 
 

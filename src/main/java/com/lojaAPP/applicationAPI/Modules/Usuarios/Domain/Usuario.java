@@ -1,5 +1,7 @@
 package com.lojaAPP.applicationAPI.Modules.Usuarios.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lojaAPP.applicationAPI.Modules.Pedidos.Domain.Pedidos;
 import com.lojaAPP.applicationAPI.Modules.Usuarios.DTO.NovoUsuarioDTO;
 import com.lojaAPP.applicationAPI.Modules.Usuarios.Domain.Entity.Enderecos;
 import com.lojaAPP.applicationAPI.Modules.Usuarios.Enum.Roles;
@@ -45,7 +47,10 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     private List<Enderecos> enderecosCliente;
 
-    public Usuario(NovoUsuarioDTO novoUsuarioDTO){
+    @OneToMany
+    private List<Pedidos> pedidosCliente;
+
+    public Usuario(NovoUsuarioDTO novoUsuarioDTO) {
         this.email = novoUsuarioDTO.email();
         this.nome = novoUsuarioDTO.nome();
         this.cpf = novoUsuarioDTO.cpf();
