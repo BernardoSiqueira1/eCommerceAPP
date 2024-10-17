@@ -6,20 +6,21 @@ import com.lojaAPP.applicationAPI.Modules.Usuarios.DTO.NovoUsuarioDTO;
 import com.lojaAPP.applicationAPI.Modules.Usuarios.Domain.Entity.Enderecos;
 import com.lojaAPP.applicationAPI.Modules.Usuarios.Enum.Roles;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.management.relation.Role;
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-public class Usuario {
+public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -56,7 +57,25 @@ public class Usuario {
         this.cpf = novoUsuarioDTO.cpf();
         this.senha = novoUsuarioDTO.senha();
         this.telefone = novoUsuarioDTO.telefone();
-        this.role = role;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (this.role == Roles.ADMIN){
+            return List.of(new SimpleGrantedAuthority("ADMIN"), new SimpleGrantedAuthority("CLIENTE"));
+        }
+        else {
+            return List.of(new SimpleGrantedAuthority("CLIENTE"));
+        }
+    }
+
+    @Override
+    public String getPassword() {
+        return this.senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
 }
