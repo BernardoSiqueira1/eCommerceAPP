@@ -11,6 +11,7 @@ import com.lojaAPP.applicationAPI.Modules.Usuarios.Repository.UsuarioRepository;
 import com.lojaAPP.applicationAPI.Utils.UsuarioMapper;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,10 +27,15 @@ public class UsuarioServices {
     @Autowired
     UsuarioMapper usuarioMapper;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @Transactional
     public void cadastrarCliente(NovoUsuarioDTO novoUsuarioDTO) {
         Usuario novoUsuario = new Usuario(novoUsuarioDTO);
         novoUsuario.setRole(Roles.CLIENTE);
+        novoUsuario.setSenha(passwordEncoder.encode(novoUsuario.getSenha()));
+
         usuarioRepository.save(novoUsuario);
 
         Enderecos novoEndereco = new Enderecos(novoUsuarioDTO, novoUsuario);
