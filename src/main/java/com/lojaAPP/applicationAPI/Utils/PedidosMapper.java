@@ -21,9 +21,7 @@ public class PedidosMapper {
         List<DetalhesPedidoDTO> detalhesPedidoList = pedidosList
                 .stream()
                 .map(pedido -> new DetalhesPedidoDTO(
-                        pedido.getUsuarioPedido().getCpf(),
-                        pedido.getUsuarioPedido().getNome(),
-                        pedido.getUsuarioPedido().getTelefone(),
+                        pedido.getId(),
                         pedido.getProdutosPedido().stream().map(produtosMapper::toDetalhesProdutoDTO).toList(),
                         pedido.getStatusPedido()
                 ))

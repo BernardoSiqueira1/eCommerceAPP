@@ -83,8 +83,4 @@ public class PedidosService {
     public void excluirPedido(long idPedido){
         pedidosRepository.deleteById(idPedido);
     }
-
-    public List<Pedidos> listarPedidosDebug() {
-        return pedidosRepository.findAll();
-    }
 }

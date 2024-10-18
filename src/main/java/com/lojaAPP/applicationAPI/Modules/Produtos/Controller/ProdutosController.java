@@ -7,6 +7,7 @@ import com.lojaAPP.applicationAPI.Modules.Produtos.Services.ProdutosService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,6 +17,7 @@ public class ProdutosController {
     @Autowired
     ProdutosService produtosService;
 
+    @PreAuthorize("hasAuthority('ADMIN'")
     @PostMapping(value = "/cadastrar")
     public ResponseEntity<?> cadastrarProduto(@ModelAttribute @Valid NovoProdutoDTO novoProdutoDTO){
         produtosService.cadastrarProduto(novoProdutoDTO);
@@ -42,12 +44,14 @@ public class ProdutosController {
             return ResponseEntity.status(200).body(response);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN'")
     @PutMapping(value = "/editar")
     public ResponseEntity<?> editarProduto(@ModelAttribute @Valid EditarProdutoDTO editarProdutoDTO){
         produtosService.editarProduto(editarProdutoDTO);
         return ResponseEntity.status(200).body("Produto foi alterado.");
     }
 
+    @PreAuthorize("hasAuthority('ADMIN'")
     @DeleteMapping(value = "/excluir/{produtoID}")
     public ResponseEntity<?> excluirProduto(@PathVariable long produtoID){
         produtosService.excluirProduto(produtoID);

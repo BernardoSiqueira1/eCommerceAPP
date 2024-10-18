@@ -7,9 +7,7 @@ import com.lojaAPP.applicationAPI.Modules.Produtos.Domain.Produtos;
 import java.util.List;
 
 public record DetalhesPedidoDTO (
-        String cpfUsuario,
-        String nomeUsuario,
-        String telefoneUsuario,
+        long idPedido,
         List<DetalhesProdutoDTO> produtos,
         StatusPedido statusPedido
 )
