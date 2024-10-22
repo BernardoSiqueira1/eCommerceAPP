@@ -1,7 +1,7 @@
 # Full-Stack e-Commerce APP
 
 Descrição: 
-Aplicação (em construção) de um e-commerce simples de eletrônicos, back-end será construído em Java SpringBoot e o front em ReactJS
+Aplicação (em construção) de um e-commerce de eletrônicos, back-end será construído em Java SpringBoot e o front em ReactJS
 
 ## To-Do:
 
