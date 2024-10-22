@@ -7,17 +7,17 @@ Aplicação (em construção) de um e-commerce simples de eletrônicos, back-end
 
 ### API:
 
-- [X] Implementação da entidade de Usuário e Serviços/Endpoints
+- [X] ~~Implementação da entidade de Usuário e Serviços/Endpoints~~
 
-- [X] Implementação da entidade de Produtos e Serviços/Endpoints
+- [X] ~~Implementação da entidade de Produtos e Serviços/Endpoints~~
 
-- [X] Implementação da entidade de Pedidos e Serviços/Endpoints
+- [X] ~~Implementação da entidade de Pedidos e Serviços/Endpoints~~
 
-- [X] Implementação de Autenticação por Tokens OAuth2
+- [X] ~~Implementação de Autenticação por Tokens OAuth2~~
 
 ### Microsserviço de Imagens:
 
-- [X] Serviço para processamento de imagens dos produtos
+- [X] ~~Serviço para processamento de imagens dos produtos~~
 
 ### Aplicação Front:
 
@@ -29,9 +29,7 @@ Aplicação (em construção) de um e-commerce simples de eletrônicos, back-end
 
 ### Deploy da aplicação:
 
-- [ ] Configurações necessárias do Docker
-
-- [ ] Criação do DockerFile
+- [ ] Criação do Docker Compose
 
 
 ## Rodando a aplicação:
